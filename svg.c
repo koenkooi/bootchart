@@ -178,6 +178,10 @@ void svg_title(void)
 				strncpy(cpu, &buf[13], 255);
 				break;
 			}
+			if (strstr(buf, "Processor")) {
+				strncpy(cpu, &buf[13], 255);
+				break;
+			}
 		}
 		fclose(f);
 	}
