@@ -194,6 +194,17 @@ void svg_title(void)
 		fclose(f);
 	}
 
+	f = fopen("/etc/os-release", "r");
+	if(f) {
+		while (fgets(buf, 255, f)) {
+			if (strstr(buf, "PRETTY_NAME=")) {
+				strncpy(build, &buf[12], 255);
+				break;
+			}
+		}
+		fclose(f);
+	}
+
 	svg("<text class=\"t1\" x=\"0\" y=\"30\">Bootchart for %s - %s</text>\n",
 	    uts.nodename, date);
 	svg("<text class=\"t2\" x=\"20\" y=\"50\">System: %s %s %s %s</text>\n",
